@@ -31,7 +31,92 @@ Any pipelines for GitHub are stored under [**.github/workflows**](./.github/work
 
 > This chapter will describe the initial components needed for this experiment
 
-TODO Add solution overview drawing and description
+![overview](./docs/mermaid/structurizr-Container-001.mmd)
+
+```mermaid
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["RIOPlatform - BackendService2 - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    5("<div style='font-weight: bold'>WebhookReciever</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 5 fill:#1168bd,stroke:#0b4884,color:#ffffff
+
+    subgraph 12 [BackendService2]
+      style 12 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      15("<div style='font-weight: bold'>APIGateway2</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 15 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      16("<div style='font-weight: bold'>Database 2</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 16 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    end
+
+    15-. "<div>Reads from and writes to</div><div style='font-size: 70%'></div>" .->16
+    5-. "<div>Calls API to write to<br />database 2</div><div style='font-size: 70%'></div>" .->15
+  end
+
+```
+
+----
+
+```mermaid
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["RIOPlatform - Containers"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    18("<div style='font-weight: bold'>ExternalSystem</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div>")
+    style 18 fill:#449082,stroke:#2f645b,color:#ffffff
+
+    subgraph 3 [RIOPlatform]
+      style 3 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      12("<div style='font-weight: bold'>BackendService2</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+      style 12 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      4("<div style='font-weight: bold'>SPA Web App</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+      style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      5("<div style='font-weight: bold'>WebhookReciever</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+      style 5 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      6("<div style='font-weight: bold'>BackendService1</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+      style 6 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    end
+
+    12-. "<div>Reads from</div><div style='font-size: 70%'></div>" .->6
+    18-. "<div>Triggers and send webhooks to<br />trigger jobs</div><div style='font-size: 70%'></div>" .->5
+    5-. "<div>Calls API to write to<br />database 2</div><div style='font-size: 70%'></div>" .->12
+    4-. "<div>Calls</div><div style='font-size: 70%'></div>" .->6
+  end
+```
+
+```mermaid
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["RIOPlatform - BackendService1 - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    12("<div style='font-weight: bold'>BackendService2</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 12 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    4("<div style='font-weight: bold'>SPA Web App</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
+
+    subgraph 6 [BackendService1]
+      style 6 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      10("<div style='font-weight: bold'>Database</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 10 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      7("<div style='font-weight: bold'>APIGateway</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 7 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    end
+
+    7-. "<div>Reads from and writes to</div><div style='font-size: 70%'></div>" .->10
+    12-. "<div>Reads from</div><div style='font-size: 70%'></div>" .->10
+    4-. "<div>Calls</div><div style='font-size: 70%'></div>" .->7
+  end
+
+```
 
 ### Core
 
