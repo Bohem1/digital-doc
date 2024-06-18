@@ -1,0 +1,24 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["RIOPlatform - BackendService1 - Components"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    12("<div style='font-weight: bold'>BackendService2</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 12 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    4("<div style='font-weight: bold'>SPA Web App</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div>")
+    style 4 fill:#1168bd,stroke:#0b4884,color:#ffffff
+
+    subgraph 6 [BackendService1]
+      style 6 fill:#ffffff,stroke:#0b4884,color:#0b4884
+
+      10("<div style='font-weight: bold'>Database</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 10 fill:#1168bd,stroke:#0b4884,color:#ffffff
+      7("<div style='font-weight: bold'>APIGateway</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div>")
+      style 7 fill:#1168bd,stroke:#0b4884,color:#ffffff
+    end
+
+    7-. "<div>Reads from and writes to</div><div style='font-size: 70%'></div>" .->10
+    12-. "<div>Reads from</div><div style='font-size: 70%'></div>" .->10
+    4-. "<div>Calls</div><div style='font-size: 70%'></div>" .->7
+  end

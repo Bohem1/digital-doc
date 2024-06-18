@@ -1,0 +1,26 @@
+@startuml
+set separator none
+title RIOPlatform - Containers
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+
+Person(ExternalRIOUser, "ExternalRIOUser", $descr="", $tags="", $link="")
+Person(InternalRIOUser, "InternalRIOUser", $descr="", $tags="", $link="")
+
+System_Boundary("RIOPlatform_boundary", "RIOPlatform", $tags="") {
+  Container(RIOPlatform.BackendService2, "BackendService2", $techn="", $descr="", $tags="", $link="")
+  Container(RIOPlatform.SPAWebApp, "SPA Web App", $techn="", $descr="", $tags="", $link="")
+  Container(RIOPlatform.BackendService1, "BackendService1", $techn="", $descr="", $tags="", $link="")
+}
+
+Rel(RIOPlatform.BackendService2, RIOPlatform.BackendService1, "Reads from", $techn="", $tags="", $link="")
+Rel(ExternalRIOUser, RIOPlatform.SPAWebApp, "Logs on to application to read the docs", $techn="", $tags="", $link="")
+Rel(ExternalRIOUser, RIOPlatform.SPAWebApp, "Uses", $techn="", $tags="", $link="")
+Rel(InternalRIOUser, RIOPlatform.SPAWebApp, "Uses", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

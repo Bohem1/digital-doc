@@ -1,0 +1,19 @@
+@startuml
+set separator none
+title RIOPlatform - System Context
+
+left to right direction
+
+!include <C4/C4>
+!include <C4/C4_Context>
+
+Person(ExternalRIOUser, "ExternalRIOUser", $descr="", $tags="", $link="")
+Person(InternalRIOUser, "InternalRIOUser", $descr="", $tags="", $link="")
+System(RIOPlatform, "RIOPlatform", $descr="", $tags="", $link="")
+
+Rel(InternalRIOUser, RIOPlatform, "Logs on to application to read the docs", $techn="", $tags="", $link="")
+Rel(ExternalRIOUser, RIOPlatform, "Uses", $techn="", $tags="", $link="")
+Rel(InternalRIOUser, RIOPlatform, "Uses", $techn="", $tags="", $link="")
+
+SHOW_LEGEND(true)
+@enduml

@@ -1,0 +1,16 @@
+graph LR
+  linkStyle default fill:#ffffff
+
+  subgraph diagram ["ExternalSystem - System Context"]
+    style diagram fill:#ffffff,stroke:#ffffff
+
+    1["<div style='font-weight: bold'>ExternalRIOUser</div><div style='font-size: 70%; margin-top: 0px'>[Person]</div>"]
+    style 1 fill:#116611,stroke:#0b470b,color:#ffffff
+    18("<div style='font-weight: bold'>ExternalSystem</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div>")
+    style 18 fill:#449082,stroke:#2f645b,color:#ffffff
+    3("<div style='font-weight: bold'>RIOPlatform</div><div style='font-size: 70%; margin-top: 0px'>[Software System]</div>")
+    style 3 fill:#1168bd,stroke:#0b4884,color:#ffffff
+
+    18-. "<div>Triggers and send webhooks to<br />trigger jobs</div><div style='font-size: 70%'></div>" .->3
+    1-. "<div>Logs on to application to<br />read and write documents</div><div style='font-size: 70%'></div>" .->18
+  end
