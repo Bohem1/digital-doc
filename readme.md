@@ -141,13 +141,23 @@ TODO document
 
 > This chapter will describe all the steps needed to deploy the experiment
 
-TODO document
+All initial deployments are done from a local developer machine.
+Terraform is configured to use remote storage. The storage provider for this project is Azure Storage Account.
+In a production setup, this would be part of the landignzone post setup jobs.
+Running on a local development setup the needed steps are recorded in the [deploy-core.ps1](./terraform/scripts/deploy-core-ps1) script. This script will create a new storage account for the terraform state file.
 
 ## Test
 
 > This chapter will describe the testing setup enabled in this experiment
 
-TODO document
+No testing have been enabled at this point.
+We have an idea of enabeling test suites for our common terraform modules, for our data inputs and for the application code that will be executed on top of this infrastructure.
+
+Any external referenced endpoints can be added to data used by PowerShell Pester framework.
+The same framework can be used to testing and verifying both the statefile used by each pipeline and to validate resources in Azure directly. The statefile can be exported to a json format that makes this process easier using PowerShell.
+
+Other test are to built into the pipelines themselves and triggered by the pull requests and or commits.
+
 
 ### OSS and common services
 
