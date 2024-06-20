@@ -125,6 +125,9 @@ TODO document core components
 The project weill deploy all components within a single subscription in Azure.
 each stack will exist within it's own resource group where it makes sense. We will use a simplified naming convention for the experiment and thereby deviating from the company standard. This is approved by the architects.
 
+At the core of this setup we will use Azure Container Apps operating inside an internal *Azure Container Apps Environment*. This environment is linked to a Azure Virtual Network that is operated by the team. This will allow the use of native Network security mechanizm like NSG to enforce inbout and outbound rules.
+
+
 ### Frontend spa
 
 TODO document
@@ -157,7 +160,6 @@ Any external referenced endpoints can be added to data used by PowerShell Pester
 The same framework can be used to testing and verifying both the statefile used by each pipeline and to validate resources in Azure directly. The statefile can be exported to a json format that makes this process easier using PowerShell.
 
 Other test are to built into the pipelines themselves and triggered by the pull requests and or commits.
-
 
 ### OSS and common services
 
